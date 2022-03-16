@@ -41,7 +41,7 @@ class User(UserMixin,db.Model):
     name = db.Column(db.String(100))
     posts=relationship('BlogPost',back_populates='author')
     comments = relationship("Comment", back_populates="comment_author")
-# db.create_all()#is ki vajha se 
+db.create_all()#is ki vajha se 
     
 class BlogPost(UserMixin,db.Model):
     __tablename__ = "blog_posts"
@@ -56,7 +56,7 @@ class BlogPost(UserMixin,db.Model):
     body = db.Column(db.Text, nullable=False)
     img_url = db.Column(db.String(250), nullable=False)
     comments = relationship("Comment", back_populates="parent_post")
-# db.create_all()
+db.create_all()
 class Comment(db.Model):
     __tablename__ = "comments"
     id = db.Column(db.Integer, primary_key=True)
@@ -66,7 +66,7 @@ class Comment(db.Model):
     post_id = db.Column(db.Integer, db.ForeignKey("blog_posts.id"))
     parent_post = relationship("BlogPost", back_populates="comments")
     text = db.Column(db.Text, nullable=False)
-# db.create_all()
+db.create_all()
 
 
 
